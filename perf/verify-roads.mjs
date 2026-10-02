@@ -231,7 +231,27 @@ const idle = {
 await page.screenshot({ path: "roads-preview.png" });
 
 const errors = consoleMsgs.filter((m) => m.type === "error");
+
+// --- pass/fail gates -------------------------------------------------------
+// Without these the script only printed, so CI could not fail on a regression.
+const checks = {
+  layerReady: stats.ready === true,
+  // the road layer must paint its own geometry (measured with the corridor
+  // layer off, see probeOn)
+  paintsMotorways: probeOn.orange > 0,
+  switchOffHides: probeOff.orange === 0,
+  switchOnRestores: probeBackOn.orange > 0,
+  drawsAfterDrag: afterDrag.drawnWays > 0,
+  fastPathOk: stats.fastPath === true,
+  noErrors: errors.length === 0 && pageErrors.length === 0,
+};
+const failed = Object.entries(checks)
+  .filter(([, v]) => !v)
+  .map(([k]) => k);
+
 console.log(JSON.stringify({
+  pass: failed.length === 0,
+  failed,
   wallMsToLoad: Date.now() - t0,
   nav,
   stats,
@@ -249,3 +269,4 @@ console.log(JSON.stringify({
 }, null, 1));
 
 await browser.close();
+process.exit(failed.length === 0 ? 0 : 1);
