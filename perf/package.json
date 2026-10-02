@@ -1,0 +1,11 @@
+{
+  "name": "freight-atlas-perf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "measure": "node measure.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

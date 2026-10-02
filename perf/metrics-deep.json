@@ -1,0 +1,302 @@
+{
+  "idleProfile": {
+    "rate": {
+      "windowMs": 4000,
+      "taskMs": 4809,
+      "scriptMs": 2569,
+      "layoutMs": 20,
+      "styleMs": 10,
+      "taskPct": 120.2,
+      "scriptPct": 64.2
+    },
+    "frames": {
+      "frames": 49,
+      "approxFps": 9.5,
+      "avgFrameMs": 104.8,
+      "p95FrameMs": 233.3,
+      "over33ms": 49
+    },
+    "profile": {
+      "ms": 4000,
+      "sampledMs": 4219,
+      "top": [
+        {
+          "fn": "(program) | inline:0",
+          "ms": 1897,
+          "pct": 45
+        },
+        {
+          "fn": "(anonymous) | inline:4689",
+          "ms": 629,
+          "pct": 14.9
+        },
+        {
+          "fn": "fillText | inline:0",
+          "ms": 108,
+          "pct": 2.6
+        },
+        {
+          "fn": "(garbage collector) | inline:0",
+          "ms": 103,
+          "pct": 2.5
+        },
+        {
+          "fn": "strokeText | inline:0",
+          "ms": 100,
+          "pct": 2.4
+        },
+        {
+          "fn": "(anonymous) | inline:4623",
+          "ms": 100,
+          "pct": 2.4
+        },
+        {
+          "fn": "bY | inline:4613",
+          "ms": 91,
+          "pct": 2.1
+        },
+        {
+          "fn": "(anonymous) | inline:4613",
+          "ms": 85,
+          "pct": 2
+        },
+        {
+          "fn": "stroke | inline:0",
+          "ms": 76,
+          "pct": 1.8
+        },
+        {
+          "fn": "measureText | inline:0",
+          "ms": 71,
+          "pct": 1.7
+        },
+        {
+          "fn": "h | inline:4611",
+          "ms": 60,
+          "pct": 1.4
+        },
+        {
+          "fn": "(anonymous) | inline:4755",
+          "ms": 56,
+          "pct": 1.3
+        },
+        {
+          "fn": "jP | inline:4754",
+          "ms": 50,
+          "pct": 1.2
+        },
+        {
+          "fn": "_drawNodes | inline:4689",
+          "ms": 38,
+          "pct": 0.9
+        },
+        {
+          "fn": "Ly | inline:4611",
+          "ms": 36,
+          "pct": 0.8
+        },
+        {
+          "fn": "P_ | inline:4613",
+          "ms": 33,
+          "pct": 0.8
+        },
+        {
+          "fn": "(anonymous) | inline:4622",
+          "ms": 33,
+          "pct": 0.8
+        },
+        {
+          "fn": "du | inline:4689",
+          "ms": 30,
+          "pct": 0.7
+        },
+        {
+          "fn": "(anonymous) | inline:4754",
+          "ms": 25,
+          "pct": 0.6
+        },
+        {
+          "fn": "_drawFx | inline:4689",
+          "ms": 22,
+          "pct": 0.5
+        }
+      ]
+    }
+  },
+  "playbackProfile": {
+    "rate": {
+      "windowMs": 3000,
+      "taskMs": 3332,
+      "scriptMs": 1425,
+      "layoutMs": 0,
+      "styleMs": 0,
+      "taskPct": 111.1,
+      "scriptPct": 47.5
+    },
+    "frames": {
+      "frames": 44,
+      "approxFps": 13.1,
+      "avgFrameMs": 76.5,
+      "p95FrameMs": 100,
+      "over33ms": 44
+    },
+    "profile": {
+      "ms": 3000,
+      "sampledMs": 3102,
+      "top": [
+        {
+          "fn": "(program) | inline:0",
+          "ms": 1738,
+          "pct": 56
+        },
+        {
+          "fn": "strokeText | inline:0",
+          "ms": 221,
+          "pct": 7.1
+        },
+        {
+          "fn": "fillText | inline:0",
+          "ms": 220,
+          "pct": 7.1
+        },
+        {
+          "fn": "measureText | inline:0",
+          "ms": 202,
+          "pct": 6.5
+        },
+        {
+          "fn": "(anonymous) | inline:4689",
+          "ms": 121,
+          "pct": 3.9
+        },
+        {
+          "fn": "stroke | inline:0",
+          "ms": 93,
+          "pct": 3
+        },
+        {
+          "fn": "(garbage collector) | inline:0",
+          "ms": 86,
+          "pct": 2.8
+        },
+        {
+          "fn": "du | inline:4689",
+          "ms": 80,
+          "pct": 2.6
+        },
+        {
+          "fn": "_drawNodes | inline:4689",
+          "ms": 74,
+          "pct": 2.4
+        },
+        {
+          "fn": "_drawFx | inline:4689",
+          "ms": 47,
+          "pct": 1.5
+        },
+        {
+          "fn": "requestAnimationFrame | inline:0",
+          "ms": 45,
+          "pct": 1.5
+        },
+        {
+          "fn": "lineTo | inline:0",
+          "ms": 39,
+          "pct": 1.3
+        },
+        {
+          "fn": "fill | inline:0",
+          "ms": 20,
+          "pct": 0.6
+        },
+        {
+          "fn": "_drawVehicle | inline:4689",
+          "ms": 20,
+          "pct": 0.6
+        },
+        {
+          "fn": "_label | inline:4689",
+          "ms": 17,
+          "pct": 0.6
+        },
+        {
+          "fn": "translate | inline:0",
+          "ms": 15,
+          "pct": 0.5
+        },
+        {
+          "fn": "_strokeRoute | inline:4689",
+          "ms": 11,
+          "pct": 0.4
+        },
+        {
+          "fn": "_drawRoutes | inline:4689",
+          "ms": 11,
+          "pct": 0.3
+        },
+        {
+          "fn": "setLineDash | inline:0",
+          "ms": 7,
+          "pct": 0.2
+        },
+        {
+          "fn": "save | inline:0",
+          "ms": 4,
+          "pct": 0.1
+        }
+      ]
+    }
+  },
+  "inventory": {
+    "rootChildren": 1,
+    "canvasCount": 2,
+    "canvasSizes": [
+      "1440x900",
+      "1440x900"
+    ],
+    "tabs": [
+      "مسیرها",
+      "مقایسه",
+      "تحلیل‌ها",
+      "برنامهٔ سفر"
+    ],
+    "chips": 6,
+    "modeRows": 6,
+    "rcards": 8,
+    "fxRoot": true,
+    "playBtn": false,
+    "drawerClasses": "drawer glass ",
+    "drawerText": "مسیرها مقایسه تحلیل‌ها برنامهٔ سفر 8 مسیر · 18 گزینه بررسی شد · 597ms درخواست استعلام #1 قطار باری چین ← ایران از خورگوس، مرز سرخس 83 🚆 ریلی $7,548 17–34 روز سریع‌ترین کم‌ریسک‌ترین بهترین ارزش CO₂ 3.5 تن ریسک کم 26 اطمینان 69٪ #2 خاور دور ← ایران (دریایی مستق",
+    "kpiText": "$7,548 هزینهٔ کل 17–34 روز زمان ترانزیت 3.5 تن CO₂ کم 26 ریسک 69٪ اطمینان 8 مسیر گزینه‌ها",
+    "rcardsAfterFirstTab": 8
+  },
+  "throttled": {
+    "wallMsToLoadEvent": 4528,
+    "nav": {
+      "dcl": 3187,
+      "load": 4512,
+      "fcp": 3128,
+      "lcp": 4000,
+      "mountMs": 3273,
+      "transferSize": 572143,
+      "decodedBodySize": 1960074
+    }
+  },
+  "mobile": {
+    "taskMs": 4016,
+    "scriptMs": 792,
+    "taskPct": 100.4,
+    "scriptPct": 19.8,
+    "frames": {
+      "frames": 51,
+      "approxFps": 12.4,
+      "avgFrameMs": 80.4,
+      "p95FrameMs": 216.7,
+      "over33ms": 51
+    },
+    "canvases": [
+      "780x1688 (dpr 2)",
+      "780x1688 (dpr 2)"
+    ]
+  }
+}
