@@ -1,0 +1,536 @@
+{
+  "meta": {
+    "target": "http://localhost:8080/",
+    "deviceScaleFactor": 1,
+    "viewport": "1440x900",
+    "startedAt": "2026-10-02T16:45:07.693Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "idleSeconds": 5
+  },
+  "load": {
+    "gotoLoadWallMs": 422,
+    "navigation": {
+      "domInteractive": 418,
+      "domContentLoaded": 418,
+      "loadEventEnd": 420,
+      "responseEnd": 37,
+      "transferSize": 572143,
+      "encodedBodySize": 571843,
+      "decodedBodySize": 1960074
+    },
+    "firstPaint": {
+      "fcp": 364,
+      "lcp": 1040,
+      "appMountMs": 479
+    },
+    "wallClock": {
+      "loadMs": 422
+    }
+  },
+  "resources": [
+    {
+      "name": "https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=sw…",
+      "type": "css",
+      "ms": 30,
+      "transferSize": 1444
+    }
+  ],
+  "phases": [
+    {
+      "name": "idle-5s",
+      "cdpCost": {
+        "ScriptDuration": 2076,
+        "TaskDuration": 5057,
+        "LayoutDuration": 12,
+        "RecalcStyleDuration": 22,
+        "JSHeapUsedMB": 14.4,
+        "Nodes": 1727
+      },
+      "frames": {
+        "frames": 50,
+        "avgFrameMs": 103,
+        "approxFps": 9.7,
+        "p95FrameMs": 150.1,
+        "droppedFrames": 50,
+        "droppedPct": 100
+      },
+      "longTasks": [
+        {
+          "start": 3474,
+          "dur": 75
+        },
+        {
+          "start": 3562,
+          "dur": 76
+        },
+        {
+          "start": 3642,
+          "dur": 104
+        },
+        {
+          "start": 3750,
+          "dur": 95
+        },
+        {
+          "start": 3850,
+          "dur": 103
+        },
+        {
+          "start": 3958,
+          "dur": 84
+        },
+        {
+          "start": 4046,
+          "dur": 84
+        },
+        {
+          "start": 4130,
+          "dur": 75
+        },
+        {
+          "start": 4210,
+          "dur": 94
+        },
+        {
+          "start": 4306,
+          "dur": 95
+        },
+        {
+          "start": 4402,
+          "dur": 98
+        },
+        {
+          "start": 4502,
+          "dur": 108
+        },
+        {
+          "start": 4610,
+          "dur": 111
+        },
+        {
+          "start": 4722,
+          "dur": 83
+        },
+        {
+          "start": 4810,
+          "dur": 103
+        },
+        {
+          "start": 4995,
+          "dur": 66
+        },
+        {
+          "start": 5062,
+          "dur": 85
+        },
+        {
+          "start": 5148,
+          "dur": 265
+        },
+        {
+          "start": 5438,
+          "dur": 72
+        },
+        {
+          "start": 5511,
+          "dur": 287
+        },
+        {
+          "start": 5822,
+          "dur": 53
+        },
+        {
+          "start": 5875,
+          "dur": 126
+        },
+        {
+          "start": 6048,
+          "dur": 86
+        },
+        {
+          "start": 6134,
+          "dur": 56
+        },
+        {
+          "start": 6191,
+          "dur": 55
+        },
+        {
+          "start": 6284,
+          "dur": 73
+        },
+        {
+          "start": 6396,
+          "dur": 54
+        },
+        {
+          "start": 6494,
+          "dur": 52
+        },
+        {
+          "start": 6706,
+          "dur": 59
+        },
+        {
+          "start": 6838,
+          "dur": 59
+        },
+        {
+          "start": 6974,
+          "dur": 84
+        },
+        {
+          "start": 7146,
+          "dur": 55
+        },
+        {
+          "start": 7308,
+          "dur": 53
+        },
+        {
+          "start": 7446,
+          "dur": 67
+        },
+        {
+          "start": 7514,
+          "dur": 51
+        },
+        {
+          "start": 7606,
+          "dur": 63
+        },
+        {
+          "start": 7750,
+          "dur": 147
+        },
+        {
+          "start": 8127,
+          "dur": 67
+        },
+        {
+          "start": 8274,
+          "dur": 83
+        },
+        {
+          "start": 8438,
+          "dur": 67
+        },
+        {
+          "start": 8555,
+          "dur": 66
+        }
+      ],
+      "heapMB": 18.4,
+      "domNodes": 1068
+    }
+  ],
+  "interactions": [
+    {
+      "name": "open command palette (Ctrl+K) + search",
+      "wallMs": 2884,
+      "settleMs": 800,
+      "ScriptDuration": 1024,
+      "TaskDuration": 2881,
+      "LayoutDuration": 30,
+      "RecalcStyleDuration": 4,
+      "JSHeapUsedMB": 14.8,
+      "Nodes": 2326,
+      "error": null
+    },
+    {
+      "name": "apply preset scenario (first chip)",
+      "wallMs": 2413,
+      "settleMs": 1200,
+      "ScriptDuration": 1250,
+      "TaskDuration": 2410,
+      "LayoutDuration": 17,
+      "RecalcStyleDuration": 5,
+      "JSHeapUsedMB": 16.7,
+      "Nodes": 1894,
+      "error": null
+    },
+    {
+      "name": "switch results tab (rates editor)",
+      "wallMs": 2721,
+      "settleMs": 800,
+      "ScriptDuration": 1097,
+      "TaskDuration": 2696,
+      "LayoutDuration": 12,
+      "RecalcStyleDuration": 5,
+      "JSHeapUsedMB": 15.5,
+      "Nodes": 2188,
+      "error": null
+    },
+    {
+      "name": "switch results tab (quote)",
+      "wallMs": 2157,
+      "settleMs": 800,
+      "ScriptDuration": 1192,
+      "TaskDuration": 2155,
+      "LayoutDuration": 16,
+      "RecalcStyleDuration": 26,
+      "JSHeapUsedMB": 20.5,
+      "Nodes": 3428,
+      "error": null
+    },
+    {
+      "name": "select first route card",
+      "wallMs": 1123,
+      "settleMs": 1000,
+      "ScriptDuration": 504,
+      "TaskDuration": 1121,
+      "LayoutDuration": 4,
+      "RecalcStyleDuration": 3,
+      "JSHeapUsedMB": 18.7,
+      "Nodes": 3123,
+      "error": "no .rcard found"
+    },
+    {
+      "name": "toggle map layer (first mode-row)",
+      "wallMs": 2103,
+      "settleMs": 1000,
+      "ScriptDuration": 822,
+      "TaskDuration": 2100,
+      "LayoutDuration": 7,
+      "RecalcStyleDuration": 4,
+      "JSHeapUsedMB": 18.3,
+      "Nodes": 2729,
+      "error": null
+    },
+    {
+      "name": "zoom in x2 + zoom out",
+      "wallMs": 3667,
+      "settleMs": 1000,
+      "ScriptDuration": 1324,
+      "TaskDuration": 3662,
+      "LayoutDuration": 12,
+      "RecalcStyleDuration": 7,
+      "JSHeapUsedMB": 17.8,
+      "Nodes": 2733,
+      "error": null
+    },
+    {
+      "name": "toggle theme",
+      "wallMs": 2127,
+      "settleMs": 1000,
+      "ScriptDuration": 784,
+      "TaskDuration": 2125,
+      "LayoutDuration": 25,
+      "RecalcStyleDuration": 90,
+      "JSHeapUsedMB": 18.7,
+      "Nodes": 2738,
+      "error": null
+    }
+  ],
+  "console": {
+    "errors": [],
+    "warnings": [],
+    "total": 0
+  },
+  "errors": {
+    "pageErrors": [],
+    "failedRequests": []
+  },
+  "playback": {
+    "clicked": true,
+    "notes": [],
+    "fpsDuringPlayback": {
+      "frames": 45,
+      "avgFrameMs": 69.26,
+      "approxFps": 14.4,
+      "p95FrameMs": 100,
+      "droppedFrames": 45,
+      "droppedPct": 100
+    },
+    "cdpCost": {
+      "ScriptDuration": 616,
+      "TaskDuration": 3033,
+      "LayoutDuration": 0,
+      "RecalcStyleDuration": 0,
+      "JSHeapUsedMB": 17,
+      "Nodes": 2729
+    },
+    "longTasks": [
+      {
+        "start": 29462,
+        "dur": 68
+      },
+      {
+        "start": 29538,
+        "dur": 64
+      },
+      {
+        "start": 29606,
+        "dur": 60
+      },
+      {
+        "start": 29666,
+        "dur": 68
+      },
+      {
+        "start": 29734,
+        "dur": 67
+      },
+      {
+        "start": 29806,
+        "dur": 64
+      },
+      {
+        "start": 29874,
+        "dur": 64
+      },
+      {
+        "start": 29938,
+        "dur": 67
+      },
+      {
+        "start": 30006,
+        "dur": 63
+      },
+      {
+        "start": 30070,
+        "dur": 67
+      },
+      {
+        "start": 30138,
+        "dur": 103
+      },
+      {
+        "start": 30247,
+        "dur": 83
+      },
+      {
+        "start": 30334,
+        "dur": 68
+      },
+      {
+        "start": 30402,
+        "dur": 71
+      },
+      {
+        "start": 30550,
+        "dur": 64
+      },
+      {
+        "start": 30614,
+        "dur": 63
+      },
+      {
+        "start": 30678,
+        "dur": 63
+      },
+      {
+        "start": 30742,
+        "dur": 67
+      },
+      {
+        "start": 30810,
+        "dur": 63
+      },
+      {
+        "start": 30874,
+        "dur": 63
+      },
+      {
+        "start": 30942,
+        "dur": 64
+      },
+      {
+        "start": 31006,
+        "dur": 63
+      },
+      {
+        "start": 31070,
+        "dur": 59
+      },
+      {
+        "start": 31130,
+        "dur": 59
+      },
+      {
+        "start": 31190,
+        "dur": 59
+      },
+      {
+        "start": 31250,
+        "dur": 64
+      },
+      {
+        "start": 31314,
+        "dur": 67
+      },
+      {
+        "start": 31386,
+        "dur": 56
+      },
+      {
+        "start": 31446,
+        "dur": 60
+      },
+      {
+        "start": 31506,
+        "dur": 59
+      },
+      {
+        "start": 31566,
+        "dur": 59
+      },
+      {
+        "start": 31626,
+        "dur": 60
+      },
+      {
+        "start": 31690,
+        "dur": 56
+      },
+      {
+        "start": 31746,
+        "dur": 59
+      },
+      {
+        "start": 31806,
+        "dur": 59
+      },
+      {
+        "start": 31870,
+        "dur": 108
+      },
+      {
+        "start": 31978,
+        "dur": 103
+      },
+      {
+        "start": 32087,
+        "dur": 63
+      },
+      {
+        "start": 32150,
+        "dur": 83
+      },
+      {
+        "start": 32238,
+        "dur": 76
+      },
+      {
+        "start": 32314,
+        "dur": 63
+      },
+      {
+        "start": 32398,
+        "dur": 52
+      },
+      {
+        "start": 32450,
+        "dur": 59
+      },
+      {
+        "start": 32514,
+        "dur": 60
+      }
+    ]
+  },
+  "final": {
+    "heapMB": 18.4,
+    "domNodes": 1526
+  }
+}
