@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "measure": "node measure.mjs"
+    "measure": "node measure.mjs",
+    "verify:roads": "node verify-roads.mjs",
+    "verify:corridors": "node verify-corridors.mjs"
   },
   "devDependencies": {
     "playwright": "^1.55.0"

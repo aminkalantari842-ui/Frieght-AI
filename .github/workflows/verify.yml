@@ -1,0 +1,59 @@
+name: verify
+
+# The atlas ships as a single HTML file whose two OpenStreetMap layers are
+# generated data embedded into that file, so the only meaningful check is to
+# build it and drive it in a real browser. Both suites fail loudly on console
+# or page errors, and verify-roads additionally guards the pixel output of the
+# Iran road layer against regressions from the corridor layer.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      # `perf/package.json` is the only package manifest in the repo.
+      - name: Install verification deps
+        working-directory: perf
+        run: npm ci
+
+      - name: Install Chromium
+        working-directory: perf
+        run: npx playwright install --with-deps chromium
+
+      # Confirm the single-file artifact still assembles and copies to dist/.
+      - name: Build
+        run: node scripts/build.mjs
+
+      - name: Start preview server
+        run: |
+          node scripts/serve.mjs &
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://localhost:8080/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://localhost:8080/
+
+      - name: Verify Iran road layer
+        working-directory: perf
+        run: npm run verify:roads
+
+      - name: Verify freight corridor layer
+        working-directory: perf
+        run: npm run verify:corridors
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: preview-screenshots
+          path: perf/*-preview.png
+          if-no-files-found: ignore

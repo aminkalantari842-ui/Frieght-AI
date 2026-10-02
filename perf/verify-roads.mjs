@@ -41,7 +41,13 @@ const stats = await page.evaluate(() => ({ ...window.__IR_ROADS_STATS, panel: ((
   return { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height), swOn: p.querySelector(".irp-sw")?.getAttribute("data-on"), text: p.innerText.replace(/\s+/g, " ").slice(0, 120) };
 })() }));
 
-// pixel probe: sample projected motorway points on the base canvas
+// Pixel probe: sample projected motorway points on the base canvas.
+//
+// The corridor layer (tools/corridors) draws freight corridors over the same
+// arteries this layer draws, so a motorway point that *is* a corridor is
+// legitimately painted teal instead of orange. Those points are skipped, and
+// counted separately, so this test still measures what it means to measure:
+// that the road layer paints its own geometry.
 const probe = async () =>
   page.evaluate(() => {
     const canvas = document.querySelectorAll("canvas")[0];
@@ -49,8 +55,54 @@ const probe = async () =>
     const ways = window.__IR_ROADS_WAYS || [[], [], []];
     const motor = ways[0] || [];
     const visible = motor.filter((w) => w.vis && w.px && w.n > 4);
+
+    // The corridor layer draws freight corridors over the same arteries this layer
+    // draws, so a motorway point that *is* a corridor is legitimately painted
+    // teal instead of orange. Skip those and count them separately, so this
+    // test still measures what it means to measure: that the road layer paints
+    // its own geometry.
+    //
+    // Corridor segments are long and sparse (27k points over a small area), so
+    // a cell grid is useless: the cells between two vertices are empty. Sample
+    // each segment's polyline densely instead, which approximates the drawn
+    // stroke accurately at this scale.
+    //
+    // Nearly every Iranian motorway is also a corridor, so the skip is applied
+    // to *measurement* points rather than treated as a failure: the caller
+    // re-runs this probe with the corridor layer off to measure the road layer
+    // on its own. `orangeOrCovered` therefore reports "orange when the corridor
+    // layer is off", which is exactly the regression this test guards.
+    const corr = (window.__IR_CORRIDORS_WAYS || {}).corridors || [];
+    const COVER_PX = 6;
+    const stroke = [];
+    for (const c of corr) {
+      if (!c.vis || !c.px) continue;
+      for (let i = 1; i < c.n; i++) {
+        const ax = c.px[i - 1], ay = c.py[i - 1];
+        const bx = c.px[i], by = c.py[i];
+        const len = Math.hypot(bx - ax, by - ay);
+        const steps = Math.max(1, Math.ceil(len / 3));
+        for (let s = 0; s <= steps; s++) {
+          const t = s / steps;
+          stroke.push(ax + (bx - ax) * t, ay + (by - ay) * t);
+        }
+      }
+    }
+    const corridorLayerOn = !!window.__IR_CORRIDORS_STATS?.userOn;
+    const nearCorridor = (x, y) => {
+      if (!corridorLayerOn) return false;
+      const d2 = COVER_PX * COVER_PX;
+      for (let i = 0; i < stroke.length; i += 2) {
+        const dx = stroke[i] - x;
+        const dy = stroke[i + 1] - y;
+        if (dx * dx + dy * dy <= d2) return true;
+      }
+      return false;
+    };
+
     let orange = 0;
     let sampled = 0;
+    let skippedOnCorridor = 0;
     const hits = [];
     for (let wi = 0; wi < Math.min(visible.length, 8); wi++) {
       const w = visible[wi];
@@ -58,6 +110,10 @@ const probe = async () =>
         const x = Math.round(w.px[k]);
         const y = Math.round(w.py[k]);
         if (x < 2 || y < 2 || x > 1437 || y > 897) continue;
+        if (nearCorridor(x, y)) {
+          skippedOnCorridor++;
+          continue;
+        }
         sampled++;
         const d = c2.getImageData(x - 1, y - 1, 3, 3).data;
         // search 3x3 for orange fill (motorway) or its dark casing
@@ -72,19 +128,44 @@ const probe = async () =>
         }
       }
     }
-    return { sampled, orange, hits, drawnWays: window.__IR_ROADS_STATS.drawnWays, zoom: window.__IR_ROADS_STATS.zoom };
+    return {
+      sampled,
+      orange,
+      skippedOnCorridor,
+      hits,
+      drawnWays: window.__IR_ROADS_STATS.drawnWays,
+      zoom: window.__IR_ROADS_STATS.zoom,
+    };
   });
 
+// Measure the road layer on its own first. The corridor layer paints over the
+// same arteries (by design), so with it on, motorway pixels read teal. Turning
+// it off isolates the road layer and keeps this a true regression guard.
+const corrPanel = page.locator("#ir-corridors-panel .ircp-head");
+const hasCorrPanel = (await corrPanel.count()) > 0;
+if (hasCorrPanel) {
+  await corrPanel.click();
+  await page.waitForTimeout(900);
+}
 const probeOn = await probe();
+const corridorLayerWasOn = probeOn.skippedOnCorridor === undefined;
 
-// toggle off via panel and re-probe
-await page.click("#ir-roads-panel .irp-head");
-await page.waitForTimeout(600);
-const probeOff = await probe();
-// toggle back on
-await page.click("#ir-roads-panel .irp-head");
-await page.waitForTimeout(600);
+const probeOff = await (async () => {
+  await page.click("#ir-roads-panel .irp-head");
+  await page.waitForTimeout(700);
+  const p = await probe();
+  await page.click("#ir-roads-panel .irp-head");
+  await page.waitForTimeout(700);
+  return p;
+})();
 const probeBackOn = await probe();
+
+// corridor layer back on
+if (hasCorrPanel) {
+  await corrPanel.click();
+  await page.waitForTimeout(900);
+}
+const probeWithCorridors = hasCorrPanel ? await probe() : null;
 
 // the app's own "جاده‌ای" layer row must hide/show the road layer too
 const rowToggle = await (async () => {
@@ -150,13 +231,34 @@ const idle = {
 await page.screenshot({ path: "roads-preview.png" });
 
 const errors = consoleMsgs.filter((m) => m.type === "error");
+
+// --- pass/fail gates -------------------------------------------------------
+// Without these the script only printed, so CI could not fail on a regression.
+const checks = {
+  layerReady: stats.ready === true,
+  // the road layer must paint its own geometry (measured with the corridor
+  // layer off, see probeOn)
+  paintsMotorways: probeOn.orange > 0,
+  switchOffHides: probeOff.orange === 0,
+  switchOnRestores: probeBackOn.orange > 0,
+  drawsAfterDrag: afterDrag.drawnWays > 0,
+  fastPathOk: stats.fastPath === true,
+  noErrors: errors.length === 0 && pageErrors.length === 0,
+};
+const failed = Object.entries(checks)
+  .filter(([, v]) => !v)
+  .map(([k]) => k);
+
 console.log(JSON.stringify({
+  pass: failed.length === 0,
+  failed,
   wallMsToLoad: Date.now() - t0,
   nav,
   stats,
   probeOn,
   probeOff,
   probeBackOn,
+  probeWithCorridors,
   rowToggle,
   probeZoomed,
   afterDrag,
@@ -167,3 +269,4 @@ console.log(JSON.stringify({
 }, null, 1));
 
 await browser.close();
+process.exit(failed.length === 0 ? 0 : 1);

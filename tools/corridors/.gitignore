@@ -1,0 +1,5 @@
+raw-*.json
+corridors.json
+corridors-packed.json
+*.geojson
+fetch-*.log
